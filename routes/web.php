@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UsuarioController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,3 +17,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::view("/registar-usuario","registarUsuario");
+Route::post("/registar-usu",[UsuarioController::class, "guardarusuario"])->name("Guardar Usuario");
+
+Route::get('/mostar-usuario',[UsuarioController::class, "mostarusuario"]);
