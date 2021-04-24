@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UsuarioController;
+use App\Http\Controllers\MatchhController;
+use App\Http\Controllers\FormularioController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,3 +23,5 @@ Route::view("/registar-usuario","registarUsuario");
 Route::post("/registar-usu",[UsuarioController::class, "guardarusuario"])->name("Guardar Usuario");
 
 Route::get('/mostar-usuario',[UsuarioController::class, "mostarusuario"]);
+Route::get('/mostar-formulario',[FormularioController::class, "mostarformulario"]);
+Route::get('/mostar-match',[MatchhController::class, "mostarmatch"]);
