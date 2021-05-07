@@ -26,8 +26,11 @@ Route::post("/registro-perfil",[PelfilController::class, "createplefil"])->name(
  //   [PelfilController::class, "mostarpelfil"];
   //  return view('visualizarperfil'); });
 Route::get('/mostar-perfil',[PelfilController::class,"visualizarelperfil"]);
+Route::get('/modificar-perfil',[PelfilController::class,"modificarperfilvista"]);
+Route::post("/modificar-perfil",[PelfilController::class, "modificarplefil"]);
 
 Route::post("/eliminar-usuario",[UserController::class, "eliminaruser"]);
+
 
 
 Route::view("/registar-usuario","registarUsuario");

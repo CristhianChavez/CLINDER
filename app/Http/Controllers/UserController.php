@@ -14,9 +14,9 @@ class UserController extends Controller
         $this->middleware('guest');
     }
 
-    public function eliminaruser(Request $request)
+    public function destroy(Request $request)
     {
-        $idsesion = $request->session()-get('id');
+       $idsesion = $request->session()-get('id');
         User::destroy($idsesion);
         User::deleted($idsesion);
         return redirect('/home');

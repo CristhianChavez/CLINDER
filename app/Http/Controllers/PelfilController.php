@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use App\Models\Pelfil;
@@ -37,6 +38,19 @@ class PelfilController extends Controller
         return redirect(RouteServiceProvider::HOME);
     }
 
+    protected function modificarplefil(Request $request)
+    {
+        $idsesion = auth()->id();
+        $pelfil = Pelfil::find($idsesion);
+        $pelfil->generoo = $request["generoo"];
+        $pelfil->orientacion = $request["orientacion"];
+        $pelfil->ciudad = $request["ciudad"];
+        $pelfil->educacion = $request["educacion"];
+        $pelfil->telefono = $request["telefono"];
+        $pelfil->descripcion = $request["descripcion"];
+        $pelfil->save();
+        return redirect(RouteServiceProvider::HOME);
+    }
     public function sesionusu(Request $request)
     {
         $idsesion = $request->session()-get('id');
@@ -47,5 +61,11 @@ class PelfilController extends Controller
         $idsesion = auth()->id();
         $resultadopel = Pelfil::where("id",$idsesion)->get();
         return view("visualizarperfil",["resultado"=>$resultadopel]);
+    }
+
+    public function modificarperfilvista(){
+        $idsesion = auth()->id();
+        $data = Pelfil::where("id",$idsesion)->first();
+        return view("modificarperfil",["data"=>$data]);
     }
 }

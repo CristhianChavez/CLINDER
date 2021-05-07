@@ -14,16 +14,17 @@
                         </div>
                     @endif
 
+                    @php
+                    $idsesion = 1;
+                    @endphp
+
                         <div class="card-body">
-                            <form method="POST" action="/eliminar-usuario">
+                            <form method="Post" action="/eliminar-usuario">
                                 @csrf
-                                    <div class="form-group row mb-0">
-                                    <div class="col-md-6 offset-md-4">
+                                @method('delete')
                                         <button id="eliminar" type="submit" class="btn btn-primary" >
                                             {{ __('Eliminar Cuenta') }}
                                         </button>
-                                    </div>
-                                </div>
                             </form>
                 </div>
             </div>
