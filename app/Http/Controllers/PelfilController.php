@@ -37,8 +37,15 @@ class PelfilController extends Controller
         return redirect(RouteServiceProvider::HOME);
     }
 
+    public function sesionusu(Request $request)
+    {
+        $idsesion = $request->session()-get('id');
+        return "$idsesion";
+    }
+
     public function visualizarelperfil(){
-        $resultadopel = Pelfil::where("id",1)->get();
+        $idsesion = auth()->id();
+        $resultadopel = Pelfil::where("id",$idsesion)->get();
         return view("visualizarperfil",["resultado"=>$resultadopel]);
     }
 }
