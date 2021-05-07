@@ -1,9 +1,10 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\MatchhController;
-use App\Http\Controllers\FormularioController;
+use App\Http\Controllers\PelfilController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,12 +17,26 @@ use App\Http\Controllers\FormularioController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
+Route::view("/","welcome");
+Route::post("/registro-perfil",[PelfilController::class, "createplefil"])->name("registarPerfil");
+//Route::view("/perfil","visualizarperfil");
+//Route::get("/perfil",function (){
+ //   [PelfilController::class, "mostarpelfil"];
+  //  return view('visualizarperfil'); });
+Route::get('/mostar-perfil',[PelfilController::class,"visualizarelperfil"]);
+
+
 Route::view("/registar-usuario","registarUsuario");
 Route::post("/registar-usu",[UsuarioController::class, "guardarusuario"])->name("Guardar Usuario");
 
 Route::get('/mostar-usuario',[UsuarioController::class, "mostarusuario"]);
-Route::get('/mostar-formulario',[FormularioController::class, "mostarformulario"]);
 Route::get('/mostar-match',[MatchhController::class, "mostarmatch"]);
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Auth::routes();
+
+Route::get('/registroperfil', function (){ return view('registroperfil'); });

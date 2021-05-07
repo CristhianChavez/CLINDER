@@ -1,3 +1,5 @@
+@extends('layouts.app')
+
 <table border="1">
     <tr>
         <th>Nombre</th>
