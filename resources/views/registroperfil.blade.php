@@ -22,7 +22,7 @@
                                     <select class="form-control" id="generoo" name="generoo">
                                         <option value="Hombre">Hombre</option>
                                         <option value="Mujer">Mujer</option>
-                                        <option value="Prefiero no Decirlo">Prefiero no Decirlo</option>
+                                        <option value="PrefieronoDecirlo">Prefiero no Decirlo</option>
                                     </select>
                                 </div>
                             </div>
@@ -141,9 +141,6 @@
 
                             </div>
 
-
-
-
                             <div class="form-group row mb-0">
                                 <div class="col-md-6 offset-md-4">
                                     <button id="register-button" type="submit" class="btn btn-primary">
@@ -151,6 +148,7 @@
                                     </button>
                                 </div>
                             </div>
+
                         </form>
                     </div>
                 </div>

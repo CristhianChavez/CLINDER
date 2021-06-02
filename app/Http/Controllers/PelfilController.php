@@ -8,14 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use App\Models\Pelfil;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
 class PelfilController extends Controller
 {
-
-    protected function validator(array $data)
+    protected function createplefil(Request $data)
     {
-        return Validator::make($data, [
+         $data->validate([
             'generoo' => ['required', 'string', 'min:3', 'max:255'],
             'orientacion' => ['required', 'string', 'min:3', 'max:255'],
             'ciudad' => ['required', 'string', 'max:255'],
@@ -23,10 +23,7 @@ class PelfilController extends Controller
             'telefono' => ['required', 'int'],
             'descripcion' => ['required', 'string', 'min:20', 'max:500'],
         ]);
-    }
 
-    protected function createplefil(Request $data)
-    {
         $pelfil = new Pelfil();
         $pelfil->generoo = $data["generoo"];
         $pelfil->orientacion = $data["orientacion"];
@@ -34,6 +31,7 @@ class PelfilController extends Controller
         $pelfil->educacion = $data["educacion"];
         $pelfil->telefono = $data["telefono"];
         $pelfil->descripcion = $data["descripcion"];
+        $pelfil->user_id = Auth::id();
         $pelfil->save();
         return redirect(RouteServiceProvider::HOME);
     }
@@ -66,6 +64,15 @@ class PelfilController extends Controller
     public function modificarperfilvista(){
         $idsesion = auth()->id();
         $data = Pelfil::where("id",$idsesion)->first();
-        return view("modificarperfil",["data"=>$data]);
+            return view("modificarperfil",["data"=>$data]);
+    }
+
+    public function mostargenero(){
+        $pelfil = new Pelfil();
+        $data = $pelfil::select("pelfils.generoo")
+            ->join("users", "pelfils.user_id","=","users.id")
+            ->where("pelfils.user_id", Auth::id())
+            ->get();
+        return view("subirfoto", ["data"=>$data]);
     }
 }

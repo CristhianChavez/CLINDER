@@ -23,6 +23,11 @@ class CreatePelfilsTable extends Migration
             $table->string("descripcion");
         });
 
+        Schema::table('pelfils', function (Blueprint $table) {
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
+        });
+
     }
 
     /**

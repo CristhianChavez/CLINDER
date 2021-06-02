@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateMatchhsTable extends Migration
+class CreateFotosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,12 @@ class CreateMatchhsTable extends Migration
      */
     public function up()
     {
-        Schema::create('matchhs', function (Blueprint $table) {
-            $table->increments("id");
-            $table->integer("amigo_id",);
-            $table->boolean("aceptar");
+        Schema::create('fotos', function (Blueprint $table) {
+            $table->id();
+            $table->binary('fotos');
+            $table->boolean('perfil');
+            $table->integer('iduser');
         });
-
-
     }
 
     /**
@@ -29,6 +28,6 @@ class CreateMatchhsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('matchhs');
+        Schema::dropIfExists('fotos');
     }
 }

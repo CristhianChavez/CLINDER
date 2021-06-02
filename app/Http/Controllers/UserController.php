@@ -14,12 +14,11 @@ class UserController extends Controller
         $this->middleware('guest');
     }
 
-    public function destroy(Request $request)
-    {
-       $idsesion = $request->session()-get('id');
-        User::destroy($idsesion);
-        User::deleted($idsesion);
-        return redirect('/home');
+
+    protected function visualizareluser(){
+        //$idsesion = auth()->id();
+        //$resultado = User::where("id",1)->get();
+        return view("visualizaruser");//,["resultado"=>$resultado]);
     }
 
 

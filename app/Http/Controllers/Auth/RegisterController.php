@@ -76,4 +76,15 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
         ]);
     }
+
+    public function destroy(User $id){
+        echo "hola";
+    }
+
+    public function visualizareluser(){
+        $idsesion = auth()->id();
+        $resultado = User::where("id",$idsesion)->get();
+        return view("visualizaruser",["resultado"=>$resultado]);
+    }
+
 }
