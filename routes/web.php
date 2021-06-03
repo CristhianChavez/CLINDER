@@ -22,22 +22,22 @@ use App\Http\Controllers\Auth\RegisterController;
 
 
 Route::view("/","welcome");
-Route::post("/registro-perfil",[PelfilController::class, "createplefil"])->name("registarPerfil");
+Route::post("/registro-perfil",[PelfilController::class, "createplefil"])->name("registarPerfil")->middleware('auth');;
 
-Route::get('/mostar-perfil',[PelfilController::class,"visualizarelperfil"])->name('mostar-perfil');
-Route::get('/modificar-perfil',[PelfilController::class,"modificarperfilvista"]);
-Route::post("/modificar-perfil",[PelfilController::class, "modificarplefil"]);
+Route::get('/mostar-perfil',[PelfilController::class,"visualizarelperfil"])->name('mostar-perfil')->middleware('auth');;
 
-Route::view('/mostar-user',"visualizaruser");
+Route::get('/modificar-perfil',[PelfilController::class,"modificarperfilvista"])->middleware('auth');
+Route::post("/modificar-perfil",[PelfilController::class, "modificarplefil"])->name("modificarperfil")->middleware('auth');;
 
-Route::view("/registar-usuario","registarUsuario");
-Route::post("/registar-usu",[UsuarioController::class, "guardarusuario"])->name("Guardar Usuario");
+Route::view('/mostar-user',"visualizaruser")->middleware('auth');;
 
-Route::view("/subir-foto","subirfoto");
-Route::post("/subir-foto",[FotoController::class, "subirfoto"])->name("subirfoto");
-Route::get('/subir-foto',[PelfilController::class,"mostargenero"]);
+Route::view("/subir-foto","subirfoto")->middleware('auth');
+Route::post("/subir-foto",[FotoController::class, "subirfoto"])->name("subirfoto")->middleware('auth');;
+Route::get('/subir-foto',[PelfilController::class,"mostargenero"])->middleware('auth');
 
-Route::get('/mostar-usuario',[UsuarioController::class, "mostarusuario"]);
+//Route::get('/mostar-usuario',[UsuarioController::class, "mostarusuario"]);
+//Route::view("/registar-usuario","registarUsuario");
+//Route::post("/registar-usu",[UsuarioController::class, "guardarusuario"])->name("Guardar Usuario");
 Route::get('/mostar-match',[MatchhController::class, "mostarmatch"]);
 
 
@@ -48,4 +48,4 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Auth::routes();
 
-Route::get('/registroperfil', function (){ return view('registroperfil'); });
+Route::get('/registroperfil', function (){ return view('registroperfil'); })->middleware('auth');;

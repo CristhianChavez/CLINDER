@@ -17,7 +17,11 @@ class CreateFotosTable extends Migration
             $table->id();
             $table->binary('fotos');
             $table->boolean('perfil');
-            $table->integer('iduser');
+        });
+
+        Schema::table('fotos', function (Blueprint $table) {
+            $table->unsignedBigInteger('iduser');
+            $table->foreign('iduser')->references('id')->on('users');
         });
     }
 

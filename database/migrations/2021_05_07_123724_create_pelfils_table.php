@@ -17,16 +17,17 @@ class CreatePelfilsTable extends Migration
             $table->increments("id");
             $table->string("generoo")->nullable();
             $table->string("orientacion");
+            $table->string("relationship");
             $table->string("ciudad");
             $table->string("educacion");
             $table->string("telefono");
             $table->string("descripcion");
         });
 
-        Schema::table('pelfils', function (Blueprint $table) {
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
-        });
+            Schema::table('pelfils', function (Blueprint $table) {
+                $table->unsignedBigInteger('user_id');
+                $table->foreign('user_id')->references('id')->on('users');
+            });
 
     }
 

@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Validator;
 
 class PelfilController extends Controller
 {
+
     protected function createplefil(Request $data)
     {
          $data->validate([
@@ -28,24 +29,25 @@ class PelfilController extends Controller
         $pelfil->generoo = $data["generoo"];
         $pelfil->orientacion = $data["orientacion"];
         $pelfil->ciudad = $data["ciudad"];
+        $pelfil->relationship = $data["relationship"];
         $pelfil->educacion = $data["educacion"];
         $pelfil->telefono = $data["telefono"];
         $pelfil->descripcion = $data["descripcion"];
         $pelfil->user_id = Auth::id();
         $pelfil->save();
-        return redirect(RouteServiceProvider::HOME);
+        return redirect(route('subirfoto'));
     }
 
-    protected function modificarplefil(Request $request)
+    protected function modificarplefil(Request $data)
     {
-        $idsesion = auth()->id();
-        $pelfil = Pelfil::find($idsesion);
-        $pelfil->generoo = $request["generoo"];
-        $pelfil->orientacion = $request["orientacion"];
-        $pelfil->ciudad = $request["ciudad"];
-        $pelfil->educacion = $request["educacion"];
-        $pelfil->telefono = $request["telefono"];
-        $pelfil->descripcion = $request["descripcion"];
+        $pelfil = Pelfil::find(Auth::id());
+        $pelfil->generoo = $data["generoo"];
+        $pelfil->orientacion = $data["orientacion"];
+        $pelfil->ciudad = $data["ciudad"];
+        $pelfil->relationship = $data["relationship"];
+        $pelfil->educacion = $data["educacion"];
+        $pelfil->telefono = $data["telefono"];
+        $pelfil->descripcion = $data["descripcion"];
         $pelfil->save();
         return redirect(RouteServiceProvider::HOME);
     }
@@ -56,15 +58,22 @@ class PelfilController extends Controller
     }
 
     public function visualizarelperfil(){
-        $idsesion = auth()->id();
-        $resultadopel = Pelfil::where("id",$idsesion)->get();
-        return view("visualizarperfil",["resultado"=>$resultadopel]);
+        $pelfil = new Pelfil();
+        $resultado = $pelfil::select("pelfils.generoo","pelfils.orientacion","pelfils.ciudad","pelfils.relationship",
+            "pelfils.educacion","pelfils.telefono","pelfils.descripcion","fotos.fotos")
+            ->join("users", "pelfils.user_id","=","users.id")
+            ->join("fotos", "fotos.iduser","=","users.id")
+            ->where("pelfils.user_id", Auth::id())
+            ->get();
+        return view("visualizarperfil",["resultado"=>$resultado]);
     }
 
     public function modificarperfilvista(){
-        $idsesion = auth()->id();
-        $data = Pelfil::where("id",$idsesion)->first();
-            return view("modificarperfil",["data"=>$data]);
+        $pelfil = new Pelfil();
+        $resultado = $pelfil::select("pelfils.generoo","pelfils.orientacion","pelfils.ciudad","pelfils.relationship",
+            "pelfils.educacion","pelfils.telefono","pelfils.descripcion")
+            ->where("user_id",Auth::id())->first();
+            return view("modificarperfil",["resultado"=>$resultado]);
     }
 
     public function mostargenero(){

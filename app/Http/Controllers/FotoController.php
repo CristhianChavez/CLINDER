@@ -23,5 +23,4 @@ class FotoController extends Controller
         return redirect(RouteServiceProvider::HOME);
     }
 
-
 }

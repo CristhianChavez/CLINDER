@@ -52,8 +52,8 @@
                                         <option value="Soltero">Soltero</option>
                                         <option value="Comprometido">Comprometido</option>
                                         <option value="Casado">Casado</option>
-                                        <option value="Es Complicado">Es Complicado</option>
-                                        <option value="Relacion Abierta">Relacion Abierta</option>
+                                        <option value="EsComplicado">Es Complicado</option>
+                                        <option value="RelacionAbierta">Relacion Abierta</option>
                                     </select>
                                 </div>
                             </div>

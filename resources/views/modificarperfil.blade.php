@@ -7,19 +7,19 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">{{ __('Crear tu Perfil') }}</div>
+                    <div class="card-header">{{ __('Modificar tu Perfil') }}</div>
 
                     <div class="card-body">
                         <form method="POST" action="/modificar-perfil">
                             @csrf
-
 
                             <div class="form-group row">
                                 <label for="generoo"
                                        class="col-md-4 col-form-label text-md-right">{{ __('Genero') }}</label>
 
                                 <div class="col-md-6">
-                                    <select class="form-control" id="generoo" name="generoo" value="{{$data["generoo"]}}">
+                                    <select class="form-control" id="generoo" name="generoo" >
+                                        <option value="{{$resultado["generoo"]}}">{{$resultado["generoo"]}}</option>
                                         <option value="Hombre">Hombre</option>
                                         <option value="Mujer">Mujer</option>
                                         <option value="Prefiero no Decirlo">Prefiero no Decirlo</option>
@@ -32,7 +32,8 @@
                                        class="col-md-4 col-form-label text-md-right">{{ __('Orientacion sexual') }}</label>
 
                                 <div class="col-md-6">
-                                    <select class="form-control" id="orientacion" name="orientacion" value="{{$data["orientacion"]}}" >
+                                    <select class="form-control" id="orientacion" name="orientacion" >
+                                        <option value="{{$resultado["orientacion"]}}">{{$resultado["orientacion"]}}</option>
                                         <option value="Heterosexual">Heterosexual</option>
                                         <option value="Gay">Gay</option>
                                         <option value="Lesbiana">Lesbiana</option>
@@ -48,7 +49,8 @@
                                        class="col-md-4 col-form-label text-md-right">{{ __('¿Cuál es su estado civil?') }}</label>
 
                                 <div class="col-md-6">
-                                    <select class="form-control" id="relationship" name="relationship" value="{{$data["realtionship"]}}">
+                                    <select class="form-control" id="relationship" name="relationship" >
+                                        <option value="{{$resultado["relationship"]}}">{{$resultado["relationship"]}}</option>
                                         <option value="Soltero">Soltero</option>
                                         <option value="Comprometido">Comprometido</option>
                                         <option value="Casado">Casado</option>
@@ -65,8 +67,9 @@
                                        class="col-md-4 col-form-label text-md-right">{{ __('¿De que pais eres?') }}</label>
 
                                 <div class="col-md-6">
-                                    <select class="form-control" id="ciudad" name="ciudad" value="{{$data["ciudad"]}}">
+                                    <select class="form-control" id="ciudad" name="ciudad" >
 
+                                        <option value="{{$resultado["ciudad"]}}">{{$resultado["ciudad"]}}</option>
                                         <option value="Argentina">Argentina</option>
                                         <option value="Bolivia">Bolivia</option>
                                         <option value="Brazil">Brazil</option>
@@ -94,7 +97,7 @@
                                 <label for="educacion" class="col-md-4 col-form-label text-md-right">{{ __('Grado de educacion') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="name" type="text" value="{{$data["educacion"]}}"
+                                    <input id="name" type="text" value="{{$resultado["educacion"]}}"
                                            class="form-control @error('educacion') is-invalid @enderror" name="educacion"
                                            value="{{ old('educacion') }}" required autocomplete="educacion" autofocus>
 
@@ -111,7 +114,7 @@
                                        class="col-md-4 col-form-label text-md-right">{{ __('Telefono') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="telefono" type="text" value="{{$data["telefono"]}}"
+                                    <input id="telefono" type="text" value="{{$resultado["telefono"]}}"
                                            class="form-control @error('telefono') is-invalid @enderror" name="telefono"
                                            value="{{ old('telefono') }}" required autocomplete="telefono">
 
@@ -128,9 +131,9 @@
                                        class="col-md-4 col-form-label text-md-right">{{ __('Cuéntanos acerca de tí:') }}</label>
 
                                 <div class="col-md-6">
-                                    <textarea class="form-control" id="descripcion" name="descripcion" rows="3" value="{{$data["descripcion"]}}"
+                                    <textarea class="form-control" id="descripcion" name="descripcion" rows="3"
                                               style="resize:none;" required
-                                              autocomplete="descripcion">{{ old('descripcion') }}</textarea>
+                                              autocomplete="descripcion">{{$resultado["descripcion"]}}</textarea>
                                 </div>
 
                                 @error('descripcion')
@@ -140,8 +143,6 @@
                                 @enderror
 
                             </div>
-
-
 
 
                             <div class="form-group row mb-0">

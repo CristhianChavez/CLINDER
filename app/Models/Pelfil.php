@@ -15,6 +15,7 @@ class Pelfil extends Model
         'generoo',
         'orientacion',
         'ciudad',
+        'relationship',
         'educacion',
         'telefono',
         'descripcion',

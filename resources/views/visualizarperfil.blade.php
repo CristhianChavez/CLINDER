@@ -77,19 +77,30 @@
                                     @foreach($resultado as $pelfil)
                                         {{$pelfil["descripcion"]}}
                                     @endforeach
-
-                            </div>
-
-
-                            <div class="form-group row mb-0">
-                                <div class="col-md-6 offset-md-4">
-                                    <button id="register-button" type="submit" class="btn btn-primary">
-                                        {{ __('Editar') }}
-                                    </button>
                                 </div>
                             </div>
-                        </form>
-                    </div>
+
+                                <div class="form-group row">
+                                    <label for="fotos"
+                                           class="col-md-4 col-form-label text-md-right">{{ __('Foto de Perfil') }}</label>
+
+                                    <div class="col-md-6">
+                                        @foreach($resultado as $pelfil)
+                                           <img src="base64_decode({{$pelfil['fotos']}})">
+                                        @endforeach
+
+                                    </div>
+                                </div>
+
+
+                                    <div class="form-group row mb-0">
+                                        <div class="col-md-6 offset-md-4">
+                                            <a class="enlace" href="{{ route('modificarperfil') }}">
+                                                <button id="register-button" type="enlace" class="btn btn-primary" >
+                                                    {{ __('Editar') }}
+                                                </button></a>
+                                        </div>
+                                    </div>
                 </div>
             </div>
         </div>
