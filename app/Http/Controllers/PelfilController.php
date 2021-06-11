@@ -82,6 +82,7 @@ class PelfilController extends Controller
             ->join("users", "pelfils.user_id","=","users.id")
             ->where("pelfils.user_id", Auth::id())
             ->get();
+
         return view("subirfoto", ["data"=>$data]);
     }
 }

@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
@@ -33,22 +34,18 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-
+                        @php
+                            $verification = new App\Http\Controllers\Auth\VerificationController();
+                            $usuario = $verification->getUserType();
+                        @endphp
                     </ul>
-
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
-                        @guest
+                    @guest
                             @if (Route::has('login'))
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('login') }}">{{ __('Iniciar Sesion') }}</a>
-                                </li>
-                            @endif
-
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Registrase') }}</a>
                                 </li>
                             @endif
                         @else
@@ -74,6 +71,12 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('mostar-perfil') }}">{{ __('Ver Perfil') }}</a>
                             </li>
+                            @if($usuario == 2)
+                                <li class="nav-item">
+                                    <a class="nav-link">{{ __('Visualizar Personas') }}</a>
+                                </li>
+                            @endif
+
                         @endguest
                     </ul>
                 </div>
