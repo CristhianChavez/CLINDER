@@ -26,7 +26,10 @@ class CreateUsersTable extends Migration
             $table->timestamps();
         });
 
-
+        Schema::table('users', function (Blueprint $table) {
+            $table->unsignedBigInteger('type_user');
+            $table->foreign('type_user')->references('id')->on('tipo_users');
+        });
     }
 
     /**

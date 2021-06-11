@@ -29,7 +29,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/registroperfil';
+    protected $redirectTo = '/registro-perfil';
 
     /**
      * Create a new controller instance.
@@ -74,6 +74,7 @@ class RegisterController extends Controller
             'ubicacion' => $data['ubicacion'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'type_user' => 1,
         ]);
     }
 
