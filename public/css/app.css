@@ -36,7 +36,14 @@
   --font-family-sans-serif: "Nunito", sans-serif;
   --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
-
+/*********************Subir Foto********************************/
+#blah{
+    width:300px;
+    height:300px;
+    border-radius:160px;
+    border:2px solid #666;
+}
+/****************************************************/
 *,
 *::before,
 *::after {
@@ -10001,5 +10008,6 @@ h3 {
     color: inherit;
     border-color: #dee2e6;
   }
+
 
 }

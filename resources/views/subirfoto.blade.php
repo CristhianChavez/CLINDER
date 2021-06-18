@@ -1,46 +1,37 @@
 @extends('layouts.app')
 @section('content')
 
-
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header">{{ __('Subir Foto') }}</div>
-
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-5">
+            <div class="card">
+                <div class="card-header">{{ __('Subir Foto') }}</div>
                     <form id="form1" method="POST" action="/subir-foto">
                         @csrf
-                    <div class="card-body">
-                        @foreach($data as $pelfil)
-                        @endforeach
-                        @if($pelfil["generoo"] != 'Mujer' && $pelfil["generoo"] != 'Hombre')
-                        <img src="https://i.ibb.co/S7w86d5/defaultotro.jpg"  alt="defaultotro" id="blah" border="0">
-                        @endif
-                        @if($pelfil["generoo"] == 'Hombre')
-                        <img src="https://i.ibb.co/0G5LYCh/defaulthombre.png" alt="defaulthombre" id="blah" border="0">
-                        @endif
-                        @if($pelfil["generoo"] == 'Mujer')
-                        <img src="https://i.ibb.co/FzXZDpB/defaultfmujer.jpg" alt="defaultfmujer" id="blah" border="0">
-                        @endif
+                            <div class="card-body">
 
-                        <input type='file' id="imgInp" id="fotos" name="fotos"/>
+                                <div class="col-md-1 offset-md-1">
+                                    <img src="{{$data}}" id="blah" >
+                                </div>
+                                <br>
+                                    <div class="col-md-1 offset-md-1">
+                                        <input type='file' id="imgInp" id="fotos" name="fotos"/>
+                                    </div>
+                                <br>
 
-                        <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button id="register-button" type="submit" class="btn btn-primary">
-                                    {{ __('Subir Foto') }}
-                                </button>
+                                <div class="form-group row mb-">
+                                    <div class="col-md-6 offset-md-4">
+                                        <button id="register-button" type="submit" class="btn btn-primary">
+                                            {{ __('Subir Foto') }}
+                                        </button>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-
-                    </div>
                     </form>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
-
+</div>
 @endsection
 @section('vue')
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>

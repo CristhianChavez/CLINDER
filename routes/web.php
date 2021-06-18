@@ -45,6 +45,7 @@ Route::get('/mostar-match',[MatchhController::class, "mostarmatch"]);
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home',[FotoController::class,"mostarfoto"])->name('home');
 
 Auth::routes();
 

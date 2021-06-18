@@ -76,13 +76,23 @@ class PelfilController extends Controller
             return view("modificarperfil",["resultado"=>$resultado]);
     }
 
-    public function mostargenero(){
+    public function mostargenero()
+    {
         $pelfil = new Pelfil();
         $data = $pelfil::select("pelfils.generoo")
-            ->join("users", "pelfils.user_id","=","users.id")
+            ->join("users", "pelfils.user_id", "=", "users.id")
             ->where("pelfils.user_id", Auth::id())
             ->get();
+        foreach ($data as $gener) {
 
-        return view("subirfoto", ["data"=>$data]);
+            if ($gener["generoo"] != 'Mujer' && $gener["generoo"] != 'Hombre') {
+                $respuesta = "https://i.ibb.co/S7w86d5/defaultotro.jpg";
+            } elseif ($gener["generoo"] == 'Hombre') {
+                $respuesta = "https://i.ibb.co/0G5LYCh/defaulthombre.png";
+            } elseif ($gener["generoo"] == 'Mujer') {
+                $respuesta = "https://i.ibb.co/FzXZDpB/defaultfmujer.jpg";
+            }
+        }
+        return view("subirfoto", ["data"=>$respuesta]);
     }
 }

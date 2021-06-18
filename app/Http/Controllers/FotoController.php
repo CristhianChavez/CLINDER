@@ -6,6 +6,7 @@ use App\Models\Foto;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class FotoController extends Controller
 {
@@ -21,6 +22,11 @@ class FotoController extends Controller
         $foto->iduser = auth()->id();
         $foto->save();
         return redirect(RouteServiceProvider::HOME);
+    }
+
+    public function mostarfoto(){
+            $resultados = Foto::where("iduser",Auth::id())->get();
+            return view("home",["resultados"=>$resultados]);
     }
 
 }
