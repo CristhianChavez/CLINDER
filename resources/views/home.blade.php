@@ -12,12 +12,9 @@
                                 {{ session('status') }}
                             </div>
                         @endif
-
-                        @foreach($resultados as $fotoss)
-                        @endforeach
-                            <img height="80" width="80" src="data:image/png;base64,'.base64_encode({{$fotoss['fotos']}}).'">
-                            <img src="data:image/jpg; base64,{{base64_encode($fotoss['fotos'])}}">
-
+                            @foreach($resultadosa as $imag)
+                            @endforeach
+                                <img src="{{\Illuminate\Support\Facades\Storage::url($imag->fotos)}}"  id="stores">
 
                     </div>
                 </div>
@@ -25,13 +22,12 @@
         </div>
 
         <style>
-            img {
-                border: 4px solid #ccc;
-                border-radius: 4px;
-                display: block;
-                height: 100px;
-                margin: 25px auto;
-                width: 100px;
+            #stores{
+                border-width: thin;
+                border-style: solid;
+                border-color: black;
+                height: 420px;
+                width: 450px;
             }
         </style>
 @endsection

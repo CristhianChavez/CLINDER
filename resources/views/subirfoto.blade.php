@@ -6,7 +6,7 @@
         <div class="col-md-5">
             <div class="card">
                 <div class="card-header">{{ __('Subir Foto') }}</div>
-                    <form id="form1" method="POST" action="/subir-foto">
+                    <form id="form1" method="POST" action="{{ route('subirfoto') }}" enctype="multipart/form-data">
                         @csrf
                             <div class="card-body">
 
@@ -15,7 +15,7 @@
                                 </div>
                                 <br>
                                     <div class="col-md-1 offset-md-1">
-                                        <input type='file' id="imgInp" id="fotos" name="fotos"/>
+                                        <input type='file' id="imgInp"  name="imgInp" />
                                     </div>
                                 <br>
 

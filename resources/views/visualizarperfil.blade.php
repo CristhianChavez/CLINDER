@@ -86,7 +86,7 @@
 
                                     <div class="col-md-6">
                                         @foreach($resultado as $pelfil)
-                                           <img src="base64_decode({{$pelfil['fotos']}})">
+                                            <img src="{{\Illuminate\Support\Facades\Storage::url($pelfil->fotos)}}"  id="blah">
                                         @endforeach
 
                                     </div>

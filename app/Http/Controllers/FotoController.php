@@ -10,23 +10,23 @@ use Illuminate\Support\Facades\Auth;
 
 class FotoController extends Controller
 {
-    protected function subirfoto(Request $data)
+    protected function subirfoto(Request $request)
     {
-        $data->validate([
-            'fotos' => ['required'],
-        ]);
+        $nombre = $request->file('imgInp')->getClientOriginalName();
+        $ruta = $request->file('imgInp')->storeAs('public/image',$nombre);
 
         $foto = new Foto();
-        $foto->fotos = $data["fotos"];
+        $foto->fotos = $ruta;
         $foto->perfil = true;
         $foto->iduser = auth()->id();
         $foto->save();
-        return redirect(RouteServiceProvider::HOME);
+
+        return redirect(route('home'));
     }
 
     public function mostarfoto(){
-            $resultados = Foto::where("iduser",Auth::id())->get();
-            return view("home",["resultados"=>$resultados]);
+            $resultadosa = Foto::where("iduser",Auth::id())->get();
+            return view("home",["resultadosa"=>$resultadosa]);
     }
 
 }

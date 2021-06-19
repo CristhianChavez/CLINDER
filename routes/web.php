@@ -32,7 +32,7 @@ Route::post("/modificar-perfil",[PelfilController::class, "modificarplefil"])->n
 
 Route::view('/mostar-user',"visualizaruser")->middleware('auth');
 
-Route::view("/subir-foto","subirfoto")->middleware('auth');
+Route::view("/subir-foto","subirfoto")->middleware('auth')->name('subirfoto');
 Route::post("/subir-foto",[FotoController::class, "subirfoto"])->name("subirfoto");
 Route::get('/subir-foto',[PelfilController::class,"mostargenero"])->middleware('auth');
 
