@@ -46,4 +46,9 @@
         </div>
     </div>
 </div>
+<style>
+    body {
+        background: #cccc;
+    }
+</style>
 @endsection

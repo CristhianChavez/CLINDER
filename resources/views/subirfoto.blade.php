@@ -55,6 +55,11 @@
             readImage(this);
         });
     </script>
+    <style>
+        body {
+            background: #cccc;
+        }
+    </style>
 @endsection
 
 

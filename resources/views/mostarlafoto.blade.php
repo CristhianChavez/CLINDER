@@ -61,5 +61,9 @@
                 margin: 25px auto;
                 width: 100px;
             }
+             body {
+                 background: #cccc;
+             }
+
         </style>
 @endsection

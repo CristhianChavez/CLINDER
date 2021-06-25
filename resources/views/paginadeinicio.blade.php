@@ -42,6 +42,11 @@
     .btn{
         font-size:20px;
     }
+
+     body {
+         background: #cccc;
+     }
+
 </style>
 </html>
 

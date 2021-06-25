@@ -71,7 +71,7 @@ class MatchhController extends Controller
         /******************NOSE COMO HACER UN WHERE CON UN ARRAY***********************/
         $resultados = $mensaje::select("fotos.fotos", "users.nombre", "users.apellido", "users.edad", "users.id as idunico")
             ->join("fotos", "fotos.iduser", "=", "users.id")
-            ->whereIn("users.id", 3)->get();
+            ->where("users.id", 2)->get();
 
 
         return view("mensajes",["resultado"=>$resultados]);

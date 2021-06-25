@@ -22,5 +22,6 @@
         <td><input type="submit" name="submit" value="guardarusuario"/></td>
     </tr>
     </form>
+
 </table>
 

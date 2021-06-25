@@ -82,5 +82,11 @@
         color: #333333;
         font-family: 'OpenSans-Bold';
     }
+
+
+     body {
+         background: #cccc;
+     }
+
 </style>
 @endsection
