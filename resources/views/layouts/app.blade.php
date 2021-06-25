@@ -77,6 +77,9 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('mostar-perfil') }}">{{ __('Ver Perfil') }}</a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('mensajes') }}">{{ __('Mensajes') }}</a>
+                            </li>
                             @if($usuario == 2)
                                 <li class="nav-item">
                                     <a class="nav-link">{{ __('Visualizar Personas') }}</a>

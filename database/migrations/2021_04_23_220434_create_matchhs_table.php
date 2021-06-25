@@ -15,10 +15,14 @@ class CreateMatchhsTable extends Migration
     {
         Schema::create('matchhs', function (Blueprint $table) {
             $table->increments("id");
-            $table->integer("amigo_id",);
+            $table->integer("amigo_id");
             $table->boolean("aceptar");
         });
 
+        Schema::table('matchhs', function (Blueprint $table) {
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
+        });
 
     }
 

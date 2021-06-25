@@ -9,14 +9,15 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use App\Models\Pelfil;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\MatchhController;
 use Illuminate\Support\Facades\Validator;
 
 class PelfilController extends Controller
 {
-
+    public $amigoId = 0;
     protected function createplefil(Request $data)
     {
-         $data->validate([
+        $data->validate([
             'generoo' => ['required', 'string', 'min:3', 'max:255'],
             'orientacion' => ['required', 'string', 'min:3', 'max:255'],
             'ciudad' => ['required', 'string', 'max:255'],
@@ -95,4 +96,32 @@ class PelfilController extends Controller
         }
         return view("subirfoto", ["data"=>$respuesta]);
     }
+
+    public function nosematchh(Request $data){
+        $this->amigoId = $data["elid"];
+    }
+    public function mostardatos(){
+        $verificarmatch = new MatchhController();
+        $newuser = new Pelfil();
+        if($verificarmatch->verificarmatch() == 0) {/****si hay datos*****/
+            $nose = $newuser::select("pelfils.generoo", "pelfils.orientacion", "pelfils.ciudad",
+                "pelfils.descripcion", "fotos.fotos", "users.nombre", "users.apellido", "users.edad", "users.id as idunico")
+                ->join("users", "pelfils.user_id", "=", "users.id")
+                ->join("fotos", "fotos.iduser", "=", "users.id")
+                ->where("pelfils.user_id", '!=', Auth::id())
+                ->inRandomOrder()
+                ->first();
+        }else{
+            $nose = $newuser::select("pelfils.generoo", "pelfils.orientacion", "pelfils.ciudad",
+                "pelfils.descripcion", "fotos.fotos", "users.nombre", "users.apellido", "users.edad", "users.id as idunico")
+                ->join("users", "pelfils.user_id", "=", "users.id")
+                ->join("fotos", "fotos.iduser", "=", "users.id")
+                ->where("pelfils.user_id", '!=', Auth::id())
+                ->where("pelfils.user_id", '!=', $this->amigoId)
+                ->inRandomOrder()
+                ->first();
+        }
+        return view("home",["nose"=>$nose]);
+    }
+
 }

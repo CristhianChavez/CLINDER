@@ -45,6 +45,39 @@
 }
 /***************************************************************/
 /***************************HOME********************************/
+.afir {
+    background-image: url("../storage/sistema/like.png");
+    background-repeat:no-repeat;
+    background-size: 100% 100%;
+    background-position:center;
+}
+.neg{
+    background-image: url("../storage/sistema/neg.png");
+    background-repeat:no-repeat;
+    background-size: 100% 100%;
+    background-position:center;
+}
+.stores{
+    border-width: thin;
+    border-style: solid;
+    border-color: black;
+    height: 420px;
+    width: 450px;
+}
+.btn-circle.btn-sm {
+    width: 50px;
+    height: 50px;
+    padding: 6px 0px;
+    border-radius: 30px;
+    font-size: 8px;
+    text-align: center;
+
+}
+.linea
+{
+    display: inline-block;
+
+}
 
 /***************************************************************/
 *,
