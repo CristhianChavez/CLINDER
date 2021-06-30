@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Validator;
 
 class PelfilController extends Controller
 {
-    public $amigoId = 0;
+
     protected function createplefil(Request $data)
     {
         $data->validate([
@@ -97,30 +97,21 @@ class PelfilController extends Controller
         return view("subirfoto", ["data"=>$respuesta]);
     }
 
-    public function nosematchh(Request $data){
-        $this->amigoId = $data["elid"];
-    }
+
     public function mostardatos(){
         $verificarmatch = new MatchhController();
+        $ids_amigos = $verificarmatch->verimensaje()['resultado']->pluck('amigo_id')->toArray();
         $newuser = new Pelfil();
-        if($verificarmatch->verificarmatch() == 0) {/****si hay datos*****/
+
             $nose = $newuser::select("pelfils.generoo", "pelfils.orientacion", "pelfils.ciudad",
                 "pelfils.descripcion", "fotos.fotos", "users.nombre", "users.apellido", "users.edad", "users.id as idunico")
                 ->join("users", "pelfils.user_id", "=", "users.id")
                 ->join("fotos", "fotos.iduser", "=", "users.id")
+                ->whereNotIn("pelfils.user_id",  $ids_amigos)
                 ->where("pelfils.user_id", '!=', Auth::id())
                 ->inRandomOrder()
                 ->first();
-        }else{
-            $nose = $newuser::select("pelfils.generoo", "pelfils.orientacion", "pelfils.ciudad",
-                "pelfils.descripcion", "fotos.fotos", "users.nombre", "users.apellido", "users.edad", "users.id as idunico")
-                ->join("users", "pelfils.user_id", "=", "users.id")
-                ->join("fotos", "fotos.iduser", "=", "users.id")
-                ->where("pelfils.user_id", '!=', Auth::id())
-                ->where("pelfils.user_id", '!=', $this->amigoId)
-                ->inRandomOrder()
-                ->first();
-        }
+
         return view("home",["nose"=>$nose]);
     }
 

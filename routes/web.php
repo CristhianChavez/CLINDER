@@ -45,12 +45,12 @@ Route::get('/mostar-match',[MatchhController::class, "mostarmattchh"]);
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/home',[FotoController::class,"mostarfoto"])->name('home');
+//Route::get('/home',[FotoController::class,"mostarfoto"])->name('home');
 Route::get('/home',[PelfilController::class,"mostardatos"])->name('home');
 Route::post('/home',[MatchhController::class,"vermatchh"])->name('home');
 //Route::post('/home',[PelfilController::class,"mostardatos"]);
 
-Route::get('/mensajes',[MatchhController::class,"mostarmensaje"])->name('mensajes');
+Route::get('/mensajes',[UserController::class,"mostarmensaje"])->name('mensajes');
 
 Auth::routes();
 
